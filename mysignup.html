@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+		<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<style>
+			*,
+*:before,
+*:after,
+ul,
+li,
+a,
+button,
+input,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+img,
+image,
+svg,
+path,
+g,
+canvas {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  font-family: "Roboto";
+  user-select: none;
+  list-style: none;
+  position: relative;
+}
+
+.html, body {
+  background-color: #FAFAFA;
+  margin: 0;
+  padding: 0;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.12);
+  background-color: #F2F8FF;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.button:hover, .button:focus {
+  transition: 0.15s ease-in-out;
+}
+
+.login-container {
+  width: 400px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.login-container .title {
+  text-transform: capitalize;
+  font-size: 1.6em;
+  font-weight: 300;
+  padding: 60px 0;
+  padding-bottom: 10px;
+}
+.login-container .login-button {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 60%;
+  padding: 20px 15px;
+  background-color: #007AFF;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  margin: 40px 0;
+}
+.login-container .login-button:hover, .login-container .login-button:focus {
+  box-shadow: 0px 3px 20px 3px rgba(0, 122, 255, 0.3);
+  background-color: #007AFF;
+}
+
+.fluid-input {
+  width: 80%;
+  height: 50px;
+  max-width: 450px;
+  position: relative;
+}
+.fluid-input-bg {
+  width: calc(100% - 10%);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  position: absolute;
+  left: 5%;
+  top: 0;
+  color: #007AFF;
+  font-weight: 400;
+  font-size: 0.9em;
+  transition: 0.3s ease-in-out;
+  text-transform: capitalize;
+}
+.fluid-input-holder {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  will-change: transform, box-shadow;
+  transition: 0.2s ease-in-out;
+  background-color: #f1f3f4;
+}
+.fluid-input-input {
+  width: inherit;
+  height: inherit;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #f1f3f4;
+  font-size: 1.05em;
+  padding: 0 5%;
+}
+.fluid-input-input:focus {
+  outline: None;
+}
+.fluid-input-label {
+  width: calc(100% - 10%);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row;
+  position: absolute;
+  font-size: 1em;
+  left: 5%;
+  top: 0;
+  color: #007AFF;
+  font-weight: 400;
+  text-transform: capitalize;
+  pointer-events: none;
+  transition: transform 0.2s ease-in-out, font-size 0.2s 0.15s ease-in-out;
+  will-change: transform, font-size;
+}
+.fluid-input--focus .fluid-input-holder {
+  box-shadow: 0px 5px 20px 0px rgba(0, 12, 47, 0.3);
+}
+.fluid-input--focus .fluid-input-bg {
+  transform: translateY(-40px);
+  transition: 0.2s 0.2s ease-in-out;
+}
+.fluid-input--focus .fluid-input-label {
+  transform: translateY(-40px);
+}
+.fluid-input--open .fluid-input-label {
+  transform: translateY(-40px);
+}
+.login-container .looo {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 60%;
+  padding: 20px 15px;
+  background-color: #929CA4;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  margin: 40px 0;
+}
+		</style>
+	
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type = "text/babel">
+			class FluidInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      focused: false,
+      value: ""
+    };
+  }
+  focusField() {
+    const { focused } = this.state;
+    this.setState({
+      focused: !focused
+    });
+  }
+  handleChange(event) {
+    const { target } = event;
+    const { value } = target;
+    this.setState({
+      value: value
+    });
+  }
+  render() {
+    const { type, label, style, id } = this.props;
+    const { focused, value } = this.state;
+    
+    let inputClass = "fluid-input";
+    if (focused) {
+      inputClass += " fluid-input--focus";
+    } else if (value != "") {
+      inputClass += " fluid-input--open";
+    }
+    
+    return (
+      <div className={inputClass} style={style}>
+        <div className="fluid-input-holder">
+          
+          <input 
+            className="fluid-input-input"
+            type={type}
+            id={id}
+            onFocus={this.focusField.bind(this)}
+            onBlur={this.focusField.bind(this)}
+            onChange={this.handleChange.bind(this)}
+            autocomplete="off"
+          />
+          <label className="fluid-input-label" forHtml={id}>{label}</label>
+          
+        </div>
+      </div>
+    );
+  }
+}
+
+class Button extends React.Component {
+  render() {
+    return (
+      <div className={`button ${this.props.buttonClass}`} onClick={this.props.onClick}>
+        {this.props.buttonText}
+      </div>
+    );
+  }
+}
+
+class LoginContainer extends React.Component {
+  render() {
+    
+    const style = {
+      margin: "15px 0"
+    };
+    return (
+      <div className="login-container">
+	  <form method="post" action="http://localhost:8080/signupsubmit"  enctype = "multipart/form-data" class="login-container" >
+        <div className="title">
+         Login
+        </div>
+		<label>-----------</label>
+		<label>USER NAME</label>
+        <input type="email" label="name" name="uname" id="name" style={style} class="looo"/>
+		<label>Password</label>
+        <input type="password" label="password"  name="password1" id="password" style={style} class="looo"/>
+		<label>confirm password</label>
+		<input type="password" name="password2" class="looo"id="password" style={style} label="password"/>
+		<input type="submit" class="login-button"/>
+		<a href="login"><label>log in</label></a>	
+		</form>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<LoginContainer />, document.getElementById("root"));
+		</script>
+	
+	
+	</body>
+
+</html>

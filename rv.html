@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: rgb(51, 49, 49);
+            display:flex;
+            justify-content:space-around;
+            flex-wrap:wrap;
+        }
+
+        .box{
+            position:relative;
+            width: 700px;
+            margin-left: 40px;
+            top: 100px;
+            right: 60px;
+            bottom: 0px;
+            border: 4px solid red;
+           
+        }
+
+        .design{
+            margin-top: 100px;
+        }
+
+        .vid{
+            border: 4px solid red;
+            
+        }
+
+        .box canvas{
+            width:100%;
+            height:100%;
+            position: absolute;
+            bottom: 0;
+            left:0;
+        }
+
+        video{
+            outline: none; 
+        }
+
+        .navmen{
+            font-size:30px;
+            cursor:pointer; 
+            font-family:lobster;
+            color: whitesmoke;
+        }
+        .navmen:hover{
+            height: 45px;
+            transition: 0.4s ease-out;
+        }
+
+        .square:hover{
+            border: 3px solid white;
+            border-radius: 10px ;
+            transition: 0.4s ease-out;
+        }
+
+        #main {
+            transition: margin-left .3s;
+            padding: 15px;
+            width:97%;
+            position:fixed;
+            background-color:#17141d;
+            box-shadow: -1rem 0 3rem #000 ;
+        }
+
+        .sidenav {
+height: 100%;
+width: 0;
+position: fixed;
+z-index: 1;
+top: 0;
+left: 0;
+background-color:#17141d;
+overflow-x: hidden;
+transition: 0.5s;
+padding-top: 60px;
+}
+
+.sidenav a {
+padding: 8px 8px 8px 32px;
+text-decoration: none;
+font-size: 25px;
+color:white;
+display: block;
+transition: 0.3s;
+}
+
+.sidenav a:hover {
+color: #C8C8C8;
+}
+
+.sidenav .closebtn {
+position: absolute;
+top: 0;
+right: 25px;
+font-size: 36px;
+margin-left: 50px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="design">
+    <video class="vid" id="preview"   width="700" autoplay ></video>
+    <div class="box"  >
+        <img  src="photo.png" width="700" height="500" autoplay muted loop >
+        <canvas width="700" height="500"></canvas>
+
+    </div>
+    </div>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#" class = "square">About</a>
+        <a href="#" class = "square">Services</a>
+        <a href="#" class = "square">Clients</a>
+        <a href="#" class = "square">Contact</a>
+    </div>
+      
+    <div id="main" >
+        <span class = "navmen" onclick="openNav() " >  &#9776  </span>
+        <img  id="status-logo" src="logoname.png" style="  height:35px; 
+          width:150px;padding-left: 43%" class = "welead">
+
+    </div>
+
+
+
+    <script charset="utf-8">
+
+        const previewVideo=document.querySelector('#preview')
+
+        document.addEventListener('DOMContentLoaded' , async()=> {
+        const stream = await navigator.mediaDevices.getUserMedia({video:true})
+        previewVideo.srcObject=stream
+        })
+
+function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+      
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+      }
+
+        const box=document.querySelector('.box');
+        const video= document.querySelector('.vid');
+        let width = video.clientWidth;
+        let height = video.clientHeight;
+
+        let c = document.querySelector('canvas');
+        c.setAttribute('height',height);
+        let ctx=c.getContext('2d');
+        video.addEventListener('play',drawVid);
+
+        function drawVid(){
+            ctx.drawImage(video,0,0,width,height);
+
+            let frame=ctx.getImageData(0,0,width,height);
+            for(let i=0; i<frame.data.length; i+=4){
+                let r=frame.data[i];
+                let g=frame.data[i+1];
+                let b=frame.data[i+2];
+
+                if(r>200 & r<260 & g>200 & g<260 & b>200 & b<260){
+                    frame.data[i+3]=0;
+                }
+            }
+            ctx.putImageData(frame,0,0);
+
+           /* if(video.paused || video.ended)
+            {
+                box.
+            }
+            else
+            {
+                box.style.display="block";
+            }
+    
+*/
+            requestAnimationFrame(drawVid);
+
+            }
+
+
+        
+        
+
+    </script>
+<div>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">
+    <link rel="iconsheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+  background-color: #100e17;
+  font-family: 'Open Sans', sans-serif;
+  }
+  
+  .container {
+  position: absolute;
+  height: 300px;
+  width: 1000px;
+  top: calc(60% - 300px);
+  left: calc(50% - 400px);
+  display: flex;
+  }
+  
+  .card {
+  display: flex;
+  height: 380px;
+  width: 510px;
+  background-color: #49484a;
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+  /*   margin-left: -50px; */
+  transition: 0.4s ease-out;
+  position: relative;
+  left: 0px;
+  }
+  
+  .card:not(:first-child) {
+    margin-left: -50px;
+  }
+  
+  .card:hover {
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+  }
+  
+  .card:hover ~ .card {
+  position: relative;
+  left: 50px;
+  transition: 0.4s ease-out;
+  }
+  
+  .title {
+  color: white;
+  font-weight: 300;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  }
+  .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#17141d;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  }
+  
+  .sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color:white;
+  display: block;
+  transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+  color: #C8C8C8;
+  }
+  
+  .sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  }
+  
+  #main {
+  transition: margin-left .3s;
+  padding: 16px;
+  width:97%;
+  position:fixed;
+  background-color:#17141d;
+  box-shadow: -1rem 0 3rem #000 ;
+  }
+  
+  .cont{
+    text-align: center;
+  }
+  
+  @media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+  }
+  
+  .bar {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  height: 5px;
+  width: 150px;
+  }
+  
+  .emptybar {
+  background-color: #2e3033;
+  width: 100%;
+  height: 100%;
+  }
+  
+  .filledbar {
+  position: absolute;
+  top: 0px;
+  z-index: 3;
+  width: 0px;
+  height: 100%;
+  background: rgb(0,154,217);
+  background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);
+  transition: 0.6s ease-out;
+  }
+  
+  .card:hover .filledbar {
+  width: 160px;
+  transition: 0.4s ease-out;
+  }
+  
+  .imges {
+  position: absolute;
+  top: 150px;
+  left: calc(50% - 60px);
+  background-color: aquamarine;
+  }
+  
+  .stroke {
+  stroke: white;
+  stroke-dasharray: 360;
+  stroke-dashoffset: 360;
+  transition: 0.6s ease-out;
+  }
+  
+  /* svg {
+  fill: #17141d;
+  stroke-width: 2px;
+  } */
+  .login{
+    float: right;
+    width: 100px;
+    height: 50px;
+    background-color: #17141d;
+    border: 3px solid #2e3033;
+    color: whitesmoke;
+    border-radius: 10px ;
+    box-shadow: -1rem 0 3rem #000;
+  }
+  .login:hover {
+    opacity: 0.5;
+    border: 3px solid white;
+    transition: 0.4s ease-out;
+  }
+  .navmen{
+    font-size:30px;
+    cursor:pointer; 
+    font-family:lobster;
+    color: whitesmoke;
+  }
+  .navmen:hover{
+    height: 45px;
+    transition: 0.4s ease-out;
+  }
+  .icon {
+        padding: 10px;
+        color: green;
+        min-width: 50px;
+  }
+  /* .square{
+    position: absolute;
+  } */
+  .square:hover{
+    border: 3px solid white;
+    border-radius: 10px ;
+    transition: 0.4s ease-out;
+  }
+  /* .welead{
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  } */
+  
+  .card:hover .stroke {
+  stroke-dashoffset: 100;
+  transition: 0.6s ease-out;
+  }
+    </style>
+    <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("main").style.marginLeft= "0";
+        }
+        </script>
+  </head>
+  <body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#" class = "square">About</a>
+        <a href="#" class = "square">Services</a>
+        <a href="#" class = "square">Clients</a>
+        <a href="#" class = "square">Contact</a>
+    </div>
+      
+    <div id="main" >
+        <span class = "navmen" onclick="openNav() " >  &#9776  </span>
+        <img  id="status-logo" src="logoname.png" style="  height:35px; 
+          width:150px;padding-left: 43%;" class = "welead">
+    </div>
+    <form method="post" action = "http://localhost:8080/upload2" enctype="multipart/form-data">
+  <div class="container">
+    <div class="card">
+      <h3 class="title">upload your video</h3>
+      <div class="bar">
+        <div class="emptybar"></div>
+        <div class="filledbar"></div>
+      </div>
+      <div class = "imges">
+        <input type="file" name="ufile1" width="100px" height="150px">
+      </div>
+    </div>
+    <div class="card" >
+      <h3 class="title">upload Img of background</h3>
+      <div class="bar">
+        <div class="emptybar"></div>
+        <div class="filledbar"></div>
+      </div>
+      <div class = "imges">
+        <input type="file" name="ufile2" width="100px" height="150px">
+      </div>
+    </div>
+     <div>
+      <div class="bar">
+      </div>
+      <div class = "imges" style="top: 500px;">
+       <div>
+         
+        <input type="submit" class="login">
+      
+      </div> 
+      </div>
+    </div> 
+  </div>
+  <hr style="color: white;"></hr>
+  
+  </form>
+    
+  </body>
