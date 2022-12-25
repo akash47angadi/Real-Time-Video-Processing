@@ -25,10 +25,10 @@ For routing process ,there is a file called routing.js , which routes all the fi
 To take the inputs of video and images , the files named uploadsupp2 ,uploadsupp3 and bg_img_to_video are used , which are interface of the whole process.
 
 About bg_img_to_video.html file :
-It takes video as input and video for the background.
+It takes video as input and video for the background.After which vv.html file is opened
 
 About uploadsupp2.html file :
-It takes video as input and image for the background.
+It takes video as input and image for the background.After which iv.html file is opened
 
 About uploadsupp3.html file :
 It takes image for the background.This is for the rv.html file.
