@@ -76,7 +76,7 @@ app.use(express.static('files'))
 	
 
 app.get("/Home",function(req,res){
-	res.sendFile(path.join(__dirname, '/main.html'));
+	res.sendFile(path.join(__dirname, '/index.html'));
 })
 
 app.get("/iv",function(req,res){
