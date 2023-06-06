@@ -1,4 +1,4 @@
-# Real-Time-VIdeo-Preocessing
+# Real-Time-Video-Preocessing
 A platform that allows you to upload your video with the suitable background that needs to be edited and also allows you to choose image and video for the background from your pc., which in turn will give you the required output video.
 
 ABOUT THE PROJECT:
